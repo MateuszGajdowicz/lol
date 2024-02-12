@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona Internetowa</title>
+    <style>
+        body {
+            background-color: #FF69B4; /* Różowy kolor tła */
+            font-family: 'Comic Sans MS', sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .label {
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+        .button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #takButton {
+            background-color: #FFD3E6; /* Zielony kolor */
+            font-family: 'Comic Sans MS', sans-serif;
+        }
+        #nieButton {
+            background-color: #FFD3E6; /* Czerwony kolor */
+            font-family: 'Comic Sans MS', sans-serif;
+        }
+        #imageLabel {
+            margin-top: 50px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="label" id="questionLabel">Zostaniesz mojom walentynkom?</div>
+    <button class="button" id="takButton">Tak</button>
+    <button class="button" id="nieButton">Nie</button>
+    <div id="imageLabel"></div>
+</div>
+
+<script>
+        let liczbaKlikniecNie = 0;
+        let TakWidth = 100;
+        let TakHeight = 100;
+        let NieWidth = 100;
+        let NieHeight = 100;
+        const questionLabel = document.getElementById('questionLabel');
+        const takButton = document.getElementById('takButton');
+        const nieButton = document.getElementById('nieButton');
+        const imageLabel = document.getElementById('imageLabel');
+
+        takButton.addEventListener('click', function() {
+            const imageSrc = 'img_4.png';
+            const newImage = document.createElement('img');
+            newImage.src = imageSrc;
+            newImage.style.width = '300px';
+            newImage.style.height = '300px';
+            imageLabel.innerHTML = '';
+            imageLabel.appendChild(newImage);
+            imageLabel.style.display = 'block';
+            questionLabel.textContent = 'Sram ci do mordy';
+        });
+
+        nieButton.addEventListener('click', function() {
+            liczbaKlikniecNie++;
+            TakWidth *= 1.15;
+            TakHeight *= 1.15;
+            NieWidth *= 0.75;
+            NieHeight *= 0.75;
+
+            takButton.style.width = TakWidth + 'px';
+            takButton.style.height = TakHeight + 'px';
+
+            nieButton.style.width = NieWidth + 'px';
+            nieButton.style.height = NieHeight + 'px';
+
+            questionLabel.textContent = `Kliknąłeś przycisk 'Nie' ${liczbaKlikniecNie} razy.`;
+
+            if (liczbaKlikniecNie === 1) {
+                questionLabel.textContent = 'Czemu :((';
+            } else if (liczbaKlikniecNie === 2) {
+                questionLabel.textContent = 'No weź';
+            } else if (liczbaKlikniecNie === 3) {
+                questionLabel.textContent = 'Ale jak to :(((';
+            } else if (liczbaKlikniecNie === 4) {
+                questionLabel.textContent = 'Będę płakał';
+            } else if (liczbaKlikniecNie === 5) {
+                questionLabel.textContent = '</3333';
+            } else if (liczbaKlikniecNie === 6) {
+                questionLabel.textContent = 'DDDDDD:';
+            } else if (liczbaKlikniecNie === 7) {
+                questionLabel.textContent = 'AJAJAJA';
+            } else if (liczbaKlikniecNie === 8) {
+                questionLabel.textContent = 'Daj mi spokój';
+            } else if (liczbaKlikniecNie >= 9) {
+                questionLabel.textContent = 'HUH';
+                const newImage = document.createElement('img');
+                newImage.src = 'huh-cat-huh-m4rtin.gif';
+                newImage.style.width = '300px';
+                newImage.style.height = '300px';
+                imageLabel.innerHTML = '';
+                imageLabel.appendChild(newImage);
+                imageLabel.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
